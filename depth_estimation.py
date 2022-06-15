@@ -58,12 +58,11 @@ def main(
 
     video = videocv.Video(video_path)
     writer = videocv.Writer(save_path, video.fps, (size[0]*2, size[1]*2))
-
-    frame_count = int(video.cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    
     idx = 0
     while video():
         idx += 1
-        print('%d / %d' % (idx, frame_count))
+        print('%d / %d' % (idx, video.frame_count))
 
         image = cv2.resize(video.frame, size, interpolation=cv2.INTER_AREA)
         x = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
